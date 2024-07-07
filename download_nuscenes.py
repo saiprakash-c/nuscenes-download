@@ -5,14 +5,20 @@ from tqdm import tqdm
 import tarfile
 import gzip
 import json 
+import argparse
 
-# replace your email and password in https://www.nuscenes.org/
-useremail = "your_email"
-password = "your_password"
+# get the credentials from command line
+parser = argparse.ArgumentParser()
+parser.add_argument("--useremail", type=str, default="your_email")
+parser.add_argument("--password", type=str, default="your_password")
+parser.add_argument("--output_dir", type=str, default="./nuscenes_data")
+parser.add_argument("--region", type=str, default="asia")
+args = parser.parse_args()
 
-output_dir = "/path/to/save"
-region = 'asia' # 'us' or 'asia'
-
+useremail = args.useremail
+password = args.password
+output_dir = args.output_dir
+region = args.region
 
 download_files = {
     "v1.0-test_meta.tgz":"b0263f5c41b780a5a10ede2da99539eb",
